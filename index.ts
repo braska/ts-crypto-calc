@@ -1,5 +1,15 @@
-import { getBalance } from "./src/application/get-balance";
+import { EtherCalc } from "./ether-calc";
+import { asyncEthersNetLocalStorage } from "./src/libs/ethers-net-context";
+import { getEtherBalanceFromApi } from "./src/services/ether-scan-api";
 
-const wallet = getBalance("1", "2");
+const main = async () => {
+  await asyncEthersNetLocalStorage.run(
+    { ethersNet: { getEtherBalance: getEtherBalanceFromApi } },
+    async () => {
+      const balance = await EtherCalc.getBalance();
+      console.log(balance);
+    }
+  );
+};
 
-console.log({ wallet });
+main();
