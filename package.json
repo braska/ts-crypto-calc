@@ -1,0 +1,17 @@
+{
+  "name": "ts-crypto-calc",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "main": "src/index",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  },
+  "scripts": {
+    "start": "node build/index.js",
+    "build": "rimraf build && tsc -P tsconfig.build.json"
+  }
+}
