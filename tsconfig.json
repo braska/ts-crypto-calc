@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
     "outDir": "build",
     "sourceMap": true,
     "importHelpers": true,

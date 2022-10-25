@@ -1,6 +1,6 @@
 import { config } from "../../config";
 
-const API_KEY = config.API_KEY;
+const API_KEY = config.ETHERSCAN_API_KEY;
 
 export type EtherScanApiResponse = {
   status: string;
@@ -8,7 +8,7 @@ export type EtherScanApiResponse = {
   result: string;
 };
 
-export async function getEtherFromAPI(
+async function getEtherFromAPI(
   walletAddress: string
 ): Promise<EtherScanApiResponse> {
   const apiUrl = `https://api.etherscan.io/api?module=account&action=balance&address=${walletAddress}&tag=latest&apikey=${API_KEY}`;
@@ -16,7 +16,7 @@ export async function getEtherFromAPI(
   return apiResp.json();
 }
 
-export async function getEtherBalanceFromApi(
+export async function getEtherBalance(
   walletAddress: string
 ): Promise<number> {
   const apiResp = await getEtherFromAPI(walletAddress);

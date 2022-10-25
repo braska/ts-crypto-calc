@@ -1,12 +1,16 @@
 import { EtherCalc } from "./ether-calc";
 import { asyncEthersNetLocalStorage } from "./src/libs/ethers-net-context";
-import { getEtherBalanceFromApi } from "./src/services/ether-scan-api";
+import { walletAddresses } from "./wallets.json";
 
 const main = async () => {
+  const service = process.argv[2];
+
+  const { getEtherBalance } = await import(`./src/services/${service}`);
+
   await asyncEthersNetLocalStorage.run(
-    { ethersNet: { getEtherBalance: getEtherBalanceFromApi } },
+    { ethersNet: { getEtherBalance: getEtherBalance } },
     async () => {
-      const balance = await EtherCalc.getBalance();
+      const balance = await EtherCalc.getBalancesSum(walletAddresses);
       console.log(balance);
     }
   );
